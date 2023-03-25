@@ -7,13 +7,13 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
     result.push({ status: 'fulfilled', value: response });
   })
     .catch((err) => {
-      result.push({ status: 'rejected', value: `Error: ${ err.message }`});
+      result.push({ status: 'rejected', value: `Error: ${err.message}` });
     });
 
   await uploadPhoto(fileName).then((response) => {
     result.push({ status: 'fulfilled', value: response });
   }).catch((err) => {
-    result.push({ status: 'rejected', value: `Error: ${err.message}`});
+    result.push({ status: 'rejected', value: `Error: ${err.message}` });
   });
   return result;
 }
