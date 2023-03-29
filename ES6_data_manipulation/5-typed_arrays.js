@@ -6,5 +6,5 @@ export default function createInt8TypedArray(length, position, value) {
     const dataView = new DataView(buffer);
     return dataView;
   }
-  return Error('Position outside range');
+  return new Error('Position outside range');
 }
