@@ -1,11 +1,8 @@
--- script that creates a stored procedure AddBonus that adds a new correction for a student.
+-- script that creates a stored procedure ComputeAverageScoreForUser that computes and store the average
 DELIMITER $$
-CREATE PROCEDURE AddBonus (user_id int, project_name varchar(255), score int)
-BEGIN SET @project_id = (SELECT id FROM projects WHERE name = project_name);
-    IF @project_id IS NULL THEN
-        INSERT INTO projects(name) VALUES (project_name);
-        SET @project_id = (SELECT id FROM projects WHERE name = project_name);
-    END IF;
-INSERT INTO corrections(user_id, project_id, score) VALUES (user_id, @project_id, score);
+CREATE PROCEDURE ComputeAverageScoreForUser (user_id int)
+BEGIN 
+  SET @avarege = (SELECT AVG(score) FROM corrections WHERE user_id = user_id);
+  UPDATE users SET average_score = @avarege WHERE id = user_id;
 END $$
 DELIMITER;
