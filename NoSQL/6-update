@@ -1,0 +1,2 @@
+//Update all the documents that match 1: matching 2: updating all
+db.school.updateMany({name: "Holberton school"}, { $set: {address: "972 Mission street"}})
