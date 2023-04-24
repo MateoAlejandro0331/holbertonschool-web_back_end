@@ -10,6 +10,8 @@ class LRUCache(BasicCache):
 
     def put(self, key, item):
         """Put an item"""
+        if key is None or item is None:
+            return
         if key in self.cache_data:
             del self.cache_data[key]
         elif len(self.cache_data) >= self.MAX_ITEMS:
