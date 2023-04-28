@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Creating unittests"""
 import unittest
+from unittest.mock import patch
 from parameterized import parameterized
-from utils import access_nested_map
+from utils import access_nested_map, get_json
 from typing import Any
 
 
@@ -26,3 +27,17 @@ class TestAccessNestedMap(unittest.TestCase):
         """ Test the access nested map exceptions """
         with self.assertRaises(KeyError):
             access_nested_map(value, path)
+
+
+class TestGetJson(unittest.TestCase):
+    """Test Get JSON"""
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False}),
+    ])
+    @patch('test_utils.get_json')
+    def test_get_json(self, test_url, test_payload, mock) -> Any:
+        """ Test the method"""
+        mock.return_value = test_payload
+        response = get_json(test_url)
+        self.assertEqual(response, test_payload)
