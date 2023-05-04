@@ -23,7 +23,8 @@ users = {
 
 app.config.from_object(Config)
 
-#Fuction to 
+
+# Fuction to get the user
 def get_user(login_as):
     if login_as in users.keys():
         user = users[login_as]
@@ -34,9 +35,10 @@ def get_user(login_as):
 # Before request handler to detect the locale
 @app.before_request
 def before_request():
-    id = int(request.args.get('login_as')) if request.args.get('login_as') else None
+    """check the user"""
+    id = int(request.args.get('login_as')) if request.args.get('login_as') \
+        else None
     g.user = get_user(id)
-    
 
 
 @babel.localeselector
