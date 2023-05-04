@@ -24,15 +24,6 @@ users = {
 app.config.from_object(Config)
 
 
-# Fuction to get the user
-def get_user(login_as):
-    """Function to get the user"""
-    if login_as in users.keys():
-        user = users[login_as]
-        return user.get('name')
-    return None
-
-
 # Before request handler to detect the locale
 @app.before_request
 def before_request():
@@ -48,16 +39,23 @@ def get_locale():
     locale = request.args.get('locale')
     if locale and locale in app.config['LANGUAGES']:
         return locale
-    if (g.get('user') and g.user.get("locale", None)
-                and g.user["locale"] in app.config['LANGUAGES']):
+    if g.user and g.user["locale"] in app.config['LANGUAGES']:
         return g.user["locale"]
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
+# Fuction to get the user
+def get_user(login_as):
+    """Function to get the user"""
+    if login_as in users.keys():
+        return users[login_as]
+    return None
 
 
 @app.route('/')
 def home():
     """Home page"""
-    return render_template('5-index.html', username=g.user)
+    return render_template('6-index.html', username=g.user.get('name'))
 
 
 if __name__ == '__main__':
