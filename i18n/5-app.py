@@ -26,6 +26,7 @@ app.config.from_object(Config)
 
 # Fuction to get the user
 def get_user(login_as):
+    """Function to get the user"""
     if login_as in users.keys():
         user = users[login_as]
         return user.get('name')
