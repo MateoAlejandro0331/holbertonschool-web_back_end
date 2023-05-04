@@ -52,10 +52,13 @@ def get_user(login_as):
     return None
 
 
-@app.route('/')
+@app.route('/', methods=['GET'], strict_slashes=False)
 def home():
     """Home page"""
-    return render_template('6-index.html', username=g.user.get('name'))
+    logIn = False
+    if g.user is not None:
+        logIn = True
+    return render_template('6-index.html', logIn=logIn)
 
 
 if __name__ == '__main__':
