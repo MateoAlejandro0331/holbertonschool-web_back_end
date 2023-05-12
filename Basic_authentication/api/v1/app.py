@@ -21,6 +21,7 @@ if auth:
 
 @app.before_request
 def authentication():
+    """function that run bofere any move"""
     if auth is None:
         return
     paths = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
