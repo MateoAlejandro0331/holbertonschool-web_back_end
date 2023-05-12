@@ -27,9 +27,9 @@ def authentication():
     if auth.require_auth(request.path, paths) is False:
         return
     if auth.authorization_header(request) is None:
-        return not_authorized(401)
+        abort(401)
     if auth.current_user(request) is None:
-        return forbidden(403)
+        abort(403)
 
 @app.errorhandler(404)
 def not_found(error) -> str:
