@@ -24,7 +24,7 @@ class Auth():
         """Authorization header"""
         if request is None:
             return None
-        if "Authorization" not in request.keys():   
+        if "Authorization" not in request.keys():
             return None
         return request["Authorization"]
 
