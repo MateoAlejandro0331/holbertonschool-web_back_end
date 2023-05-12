@@ -26,9 +26,9 @@ def authentication():
     paths = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
     if auth.require_auth(request.path, paths) is False:
         return
-    if auth.authorization_header(request.headers) is None:
+    if auth.authorization_header(request) is None:
         return not_authorized(401)
-    if auth.current_user(request.headers) is None:
+    if auth.current_user(request) is None:
         return forbidden(403)
 
 @app.errorhandler(404)
@@ -45,8 +45,6 @@ def not_authorized(error) -> str:
     return jsonify({"error": "Unauthorized"}), 401
 
 # HTTP status code for a request forbidden 403
-
-
 @app.errorhandler(403)
 def forbidden(error) -> str:
     """forbidden request"""
