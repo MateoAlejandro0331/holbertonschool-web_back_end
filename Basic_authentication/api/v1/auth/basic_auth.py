@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Create a class BasicAuth"""
 from api.v1.auth.auth import Auth
-from typing import Tuple
+from typing import Tuple, TypeVar
 import base64
+from models.user import User
 
 
 class BasicAuth(Auth):
@@ -44,3 +45,16 @@ class BasicAuth(Auth):
             return (None, None)
         data = decoded_base64_authorization_header.split(':')
         return (data[0], data[1])
+
+    def user_object_from_credentials(
+            self, user_email: str, user_pwd: str) -> TypeVar('User'):
+        """user_object_from_credentials"""
+        if user_email is None or user_pwd is None:
+            return None
+        if len(User.search({'email': user_email})) == 0:
+            return None
+        obj = User.search({'email': user_email})
+        if obj[0].is_valid_password(user_pwd) is False:
+            return None
+        else:
+            return obj[0]
