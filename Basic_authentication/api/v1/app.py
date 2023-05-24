@@ -32,6 +32,7 @@ def authentication():
     if auth.current_user(request) is None:
         abort(403)
 
+
 @app.errorhandler(404)
 def not_found(error) -> str:
     """ Not found handler
@@ -46,6 +47,8 @@ def not_authorized(error) -> str:
     return jsonify({"error": "Unauthorized"}), 401
 
 # HTTP status code for a request forbidden 403
+
+
 @app.errorhandler(403)
 def forbidden(error) -> str:
     """forbidden request"""
