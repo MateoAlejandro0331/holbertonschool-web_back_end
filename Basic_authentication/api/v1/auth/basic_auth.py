@@ -51,6 +51,8 @@ class BasicAuth(Auth):
         """user_object_from_credentials"""
         if user_email is None or user_pwd is None:
             return None
+        if type(user_email) != str or type(user_pwd) != str:
+            return None
         if len(User.search({'email': user_email})) == 0:
             return None
         obj = User.search({'email': user_email})
