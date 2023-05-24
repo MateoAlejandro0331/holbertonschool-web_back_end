@@ -56,7 +56,7 @@ class BasicAuth(Auth):
         if len(User.search({'email': user_email})) == 0:
             return None
         obj = User.search({'email': user_email})
-        if obj[0].is_valid_password(user_pwd) is False:
-            return None
-        else:
-            return obj[0]
+        for user in obj:
+            if user.is_valid_password(user_pwd):
+                return user
+        return None
