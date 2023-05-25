@@ -51,7 +51,7 @@ class BasicAuth(Auth):
         """user_object_from_credentials"""
         if user_email is None or user_pwd is None:
             return None
-        if type(user_email) != str or type(user_pwd) != str:
+        if not isinstance(user_email, str) or not isinstance(user_pwd, str):
             return None
         if len(User.search({'email': user_email})) == 0:
             return None
@@ -59,7 +59,6 @@ class BasicAuth(Auth):
         if obj[0].is_valid_password(user_pwd) is False:
             return obj[0]
         return None
-            
 
     def current_user(self, request=None) -> TypeVar('User'):
         """current user"""
