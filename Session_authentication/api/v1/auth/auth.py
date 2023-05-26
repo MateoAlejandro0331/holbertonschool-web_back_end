@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Create a class auth"""
+from os import getenv
 from typing import List, TypeVar
 
 
@@ -30,3 +31,10 @@ class Auth():
     def current_user(self, request=None) -> TypeVar('User'):
         """current user"""
         return None
+
+    def session_cookie(self, request=None):
+        """Method that returns a cookie value from a request"""
+        if request is None:
+            return None
+        cookie_name = str(getenv('SESSION_NAME'))
+        return request.cookies.get(cookie_name)
