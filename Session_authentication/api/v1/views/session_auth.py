@@ -9,6 +9,7 @@ from os import getenv
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def login():
+    """Create the login """
     email = request.form.get('email')
     password = request.form.get('password')
     if email is None or email == '':
