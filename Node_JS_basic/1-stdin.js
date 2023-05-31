@@ -12,4 +12,3 @@ process.on('exit', () => {
   console.log('This important software is now closing');
 });
 
-process.stdin.resume(); // Start listening for input
