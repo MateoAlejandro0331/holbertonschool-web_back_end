@@ -82,6 +82,7 @@ class Auth:
             if user:
                 id = _generate_uuid()
                 user.reset_token = id
+            raise ValueError()
         except ValueError:
-            raise ValueError
+            raise ValueError()
 
