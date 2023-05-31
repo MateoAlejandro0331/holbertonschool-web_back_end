@@ -87,4 +87,3 @@ class Auth:
             raise ValueError
         except NoResultFound:
             raise ValueError
-
