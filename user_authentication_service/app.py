@@ -49,7 +49,7 @@ def logout():
     """Logout the user and destroy the session"""
     session_id = request.cookies.get('session_id')
     if session_id:
-        user_id = AUTH.user_id_for_session_id(session_id)
+        user_id = AUTH.get_user_from_session_id(session_id)
         if user_id:
             AUTH.destroy_session(user_id)
             return redirect('/')
