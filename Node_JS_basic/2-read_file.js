@@ -21,26 +21,17 @@ const countStudents = (path) => {
       data.push(rowData);
     }
   }
-  process.stdout.write(`Number of students: ${data.length}\n`);
+  console.log(`Number of students: ${data.length}`);
+
   const csStudents = data.filter((obj) => obj.field === 'CS');
-  process.stdout.write(`Number of students in CS: ${csStudents.length}. List: `);
-  csStudents.map((obj, index) => {
-    if (index === csStudents.length - 1) {
-      process.stdout.write(`${obj.firstname}\n`);
-    } else {
-      process.stdout.write(`${obj.firstname}, `);
-    }
-  });
+  const csNames = csStudents.map((obj) => obj.firstname);
+  const joinCsNames = csNames.join(', ');
+  console.log(`Number of students in CS: ${csNames.length}. List: ${joinCsNames}`);
 
   const sweStudents = data.filter((obj) => obj.field === 'SWE');
-  process.stdout.write(`Number of students in SWE: ${sweStudents.length}. List: `);
-  sweStudents.map((obj, index) => {
-    if (index === sweStudents.length - 1) {
-      process.stdout.write(`${obj.firstname}\n`);
-    } else {
-      process.stdout.write(`${obj.firstname}, `);
-    }
-  });
+  const sweNames = sweStudents.map((obj) => obj.firstname);
+  const joinSweNames = sweNames.join(', ');
+  console.log(`Number of students in SWE: ${sweNames.length}. List: ${joinSweNames}`);
 };
 
 module.exports = countStudents;
