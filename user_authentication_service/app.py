@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Flask app
 """
-from flask import Flask, jsonify, abort, request
+from flask import Flask, jsonify, abort, redirect, request
 from auth import Auth
 
 
@@ -42,6 +42,18 @@ def sessions():
         abort(401)
     except BaseException:
         abort(401)
+
+
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout():
+    """Logout the user and destroy the session"""
+    session_id = request.cookies.get('session_id')
+    if session_id:
+        user_id = AUTH.user_id_for_session_id(session_id)
+        if user_id:
+            AUTH.destroy_session(user_id)
+            return redirect('/')
+    return jsonify({'message': 'Forbidden'}), 403
 
 
 if __name__ == "__main__":
