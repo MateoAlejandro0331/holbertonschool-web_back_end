@@ -37,9 +37,11 @@ app.get('/students', async (req, res) => {
     const sweNames = sweStudents.map((obj) => obj.firstname);
     const joinSweNames = sweNames.join(', ');
     //res.write(`Number of students in SWE: ${sweNames.length}. List: ${joinSweNames}`);
-    const response = `Number of students: ${data.length}\n
-    Number of students in CS: ${csNames.length}. List: ${joinCsNames}\n
-    Number of students in SWE: ${sweNames.length}. List: ${joinSweNames}\n`
+    const response = `
+        This is the list of our students\n
+        Number of students: ${data.length}\n
+        Number of students in CS: ${csNames.length}. List: ${joinCsNames}\n
+        Number of students in SWE: ${sweNames.length}. List: ${joinSweNames}\n`
     res.send(response)
   } catch (err) {
     //console.log(process.argv[2].split(' ').join())
