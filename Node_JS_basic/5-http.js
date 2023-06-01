@@ -5,7 +5,7 @@ const app = http.createServer(async (req, res) => {
 
   const { url } = req;
   res.statusCode = 200;
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.setHeader('Content-Type', 'text/plain');
 
   if (url === '/') {
     res.write('Hello Holberton School!\n');
