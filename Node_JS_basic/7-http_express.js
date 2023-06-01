@@ -2,7 +2,6 @@ const express = require('express');
 const fs = require('fs').promises;
 
 const app = express();
-const fileName = process.argv[2]
 
 app.get('/', (req, res) => {
   res.send('Hello Holberton School!');
