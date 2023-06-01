@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 
 const app = http.createServer(async (req, res) => {
   const { url } = req;
-
+  res.statusCode = 200;
   if (url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello Holberton School!\n');
