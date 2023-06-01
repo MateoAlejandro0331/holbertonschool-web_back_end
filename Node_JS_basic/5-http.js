@@ -2,7 +2,6 @@ const http = require('http');
 const fs = require('fs').promises;
 
 const app = http.createServer(async (req, res) => {
-
   const { url } = req;
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
