@@ -2,12 +2,15 @@ const http = require('http');
 const fs = require('fs').promises;
 
 const app = http.createServer(async (req, res) => {
+
   const { url } = req;
   res.statusCode = 200;
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+
   if (url === '/') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello Holberton School!\n');
-  } else if (url === '/students') {
+    res.write('Hello Holberton School!\n');
+  }
+  if (url === '/students') {
     res.write('This is the list of our students\n');
     try {
       const fileContent = await fs.readFile(process.argv[2], 'utf8');
