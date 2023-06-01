@@ -42,7 +42,7 @@ const app = http.createServer(async (req, res) => {
       const joinSweNames = sweNames.join(', ');
       res.write(`Number of students in SWE: ${sweNames.length}. List: ${joinSweNames}`);
     } catch (err) {
-      res.write('Cannot load the database\n');
+      res.write('Cannot load the database');
     }
   }
   res.end();
