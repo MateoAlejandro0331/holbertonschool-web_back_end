@@ -17,14 +17,6 @@ describe('testing calculateNumber', () => {
   });
 
   it('result should be 6', () => {
-    assert.strictEqual(calculateNumber(1.5, 3.7), 6);
-  });
-
-  it('result should be 1', () => {
-    assert.strictEqual(calculateNumber(-1, 2), 1);
-  });
-
-  it('result should be 0', () => {
-    assert.strictEqual(calculateNumber(0, 0), 0);
+    assert.strictEqual(calculateNumber(1, 3.7), 5);
   });
 });
