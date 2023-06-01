@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 
 app.get('/students', async (req, res) => {
   try {
-    const fileContent = await fs.readFile(process.argv[2], 'utf8');
+    const fileContent = await fs.readFile(str(process.argv[2]), 'utf8');
     const lines = fileContent.split('\n');
     const headers = lines[0].split(',');
 
@@ -26,21 +26,25 @@ app.get('/students', async (req, res) => {
       }
     }
 
-    res.write(`Number of students: ${data.length}\n`);
+    //res.write(`Number of students: ${data.length}\n`);
 
     const csStudents = data.filter((obj) => obj.field === 'CS');
     const csNames = csStudents.map((obj) => obj.firstname);
     const joinCsNames = csNames.join(', ');
-    res.write(`Number of students in CS: ${csNames.length}. List: ${joinCsNames}\n`);
+    r//es.write(`Number of students in CS: ${csNames.length}. List: ${joinCsNames}\n`);
 
     const sweStudents = data.filter((obj) => obj.field === 'SWE');
     const sweNames = sweStudents.map((obj) => obj.firstname);
     const joinSweNames = sweNames.join(', ');
-    res.write(`Number of students in SWE: ${sweNames.length}. List: ${joinSweNames}`);
+    //res.write(`Number of students in SWE: ${sweNames.length}. List: ${joinSweNames}`);
+    const response = `Number of students: ${data.length}\n
+    Number of students in CS: ${csNames.length}. List: ${joinCsNames}\n
+    Number of students in SWE: ${sweNames.length}. List: ${joinSweNames}\n`
+    res.send(response)
   } catch (err) {
-    res.write('Cannot load the database');
+    //console.log(process.argv[2].split(' ').join())
+    res.send('Cannot load the database');
   }
-  res.send();
 });
 
 app.listen(1245, () => {
