@@ -7,6 +7,7 @@ from typing import Union, Optional, Callable
 
 
 def count_calls(method: Callable) -> Callable:
+    """Count the number of calls"""
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         key = method.__qualname__
@@ -37,6 +38,7 @@ def replay(method):
 
     for inp, out in zip(inputs, outputs):
         print(f"{method.__qualname__}(*{inp.decode()}) -> {out.decode()}")
+
 
 class Cache:
     """cache class"""
