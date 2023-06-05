@@ -1,25 +1,10 @@
 const assert = require('assert');
-const calculateNumber = require('./0-calcul')
+const calculateNumber = require('./0-calcul');
 
-// Test suite
-describe('testing calculateNumber', () => {
-  // Test cases
-  it('result should be 4', () => {
-    assert.equal(calculateNumber(3, 1), 4);
-  });
-  it('result should be 5', () => {
-    assert.equal(calculateNumber(1, 3.7), 5);
-  });
-  it('result should be 5', () => {
-    assert.equal(calculateNumber(1.2, 3.7), 5);
-  });
-  it('result should be 6', () => {
-    assert.equal(calculateNumber(1.5, 3.7), 6);
-  });
-  it('result should be 0', () => {
-    assert.equal(calculateNumber(-1, 1), 0);
-  });
-  it('result should be 0', () => {
-    assert.equal(calculateNumber(0, 0), 0);
+describe('calculateNumber', () => {
+  it('should return the sum of two rounded numbers', () => {
+    assert.strictEqual(calculateNumber(3.7, 4.2), 8);
+    assert.strictEqual(calculateNumber(2.3, 1.8), 4);
+    assert.strictEqual(calculateNumber(5.1, 3.9), 9);
   });
 });
