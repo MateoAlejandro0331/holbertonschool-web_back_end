@@ -1,6 +1,6 @@
-const request = require('supertest');
-const { expect } = require('chai');
-const app = require('./api');
+const chai = require('chai');
+const expect = chai.expect;
+const request = require('request');
 
 describe('Index page', () => {
   it('should return 200', (done) => {
