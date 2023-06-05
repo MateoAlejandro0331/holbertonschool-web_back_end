@@ -5,6 +5,4 @@ const sendPaymentRequestToApi = (totalAmount, totalShipping) => {
   console.log(`The total is: ${sum}`);
 };
 
-module.exports = {
-  sendPaymentRequestToApi
-};
+module.exports = sendPaymentRequestToApi;
