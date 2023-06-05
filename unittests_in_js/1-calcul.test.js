@@ -13,7 +13,7 @@ describe('calculateNumber', () => {
   describe('type SUBTRACT', () => {
     it('should return the subtraction of two rounded numbers', () => {
       assert.strictEqual(calculateNumber('SUBTRACT', 5.7, 3.2), 3);
-      assert.strictEqual(calculateNumber('SUBTRACT', 8.2, 2.5), 6);
+      assert.strictEqual(calculateNumber('SUBTRACT', 8.2, 2.5), 5);
       assert.strictEqual(calculateNumber('SUBTRACT', 10.9, 4.7), 6);
     });
   });
@@ -21,8 +21,8 @@ describe('calculateNumber', () => {
   describe('type DIVIDE', () => {
     it('should return the division of two rounded numbers', () => {
       assert.strictEqual(calculateNumber('DIVIDE', 10, 2), 5);
-      assert.strictEqual(calculateNumber('DIVIDE', 9.5, 3.3), 3);
-      assert.strictEqual(calculateNumber('DIVIDE', 15, 4), 4);
+      assert.strictEqual(calculateNumber('DIVIDE', 9.4, 3.3), 3);
+      assert.strictEqual(calculateNumber('DIVIDE', 15, 3), 5);
     });
 
     it('should return "Error" if the rounded value of b is 0', () => {
