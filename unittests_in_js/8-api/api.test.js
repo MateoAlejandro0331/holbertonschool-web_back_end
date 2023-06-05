@@ -2,16 +2,17 @@ const request = require('supertest');
 const { expect } = require('chai');
 const app = require('./api');
 
-describe('API', () => {
-  describe('GET /', () => {
-    it('should return the correct status code', async () => {
-      const response = await request(app).get('/');
-      expect(response.status).to.equal(200);
+describe('Index page', () => {
+  it('should return 200', (done) => {
+    request('http://localhost:7865', (err, res) => {
+      expect(res.statusCode).to.equal(200);
+      done();
     });
-
-    it('should return the correct result', async () => {
-      const response = await request(app).get('/');
-      expect(response.text).to.equal('Welcome to the payment system');
+  });
+  it('should return the correct result', (done) => {
+    request('http://localhost:7865', (err, res, body) => {
+      expect(body).to.equal('Welcome to the payment system');
+      done();
     });
   });
 });
