@@ -27,6 +27,13 @@ describe('API', () => {
       });
     });
 
+    it('should return the correct result when :id is a number', (done) => {
+      request('http://localhost:7865/cart/1', (err, res, body) => {
+        expect(body).to.equal('Payment methods for cart 1');
+        done();
+      });
+    });
+
     it('should return 404 when :id is NOT a number', (done) => {
       request('http://localhost:7865/cart/abc', (err, res) => {
         expect(res.statusCode).to.equal(404);
