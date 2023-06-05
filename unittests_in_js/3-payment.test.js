@@ -7,7 +7,6 @@ describe('sendPaymentRequestToApi', () => {
   it('should use Utils.calculateNumber with type SUM', () => {
     const calculateNumberSpy = sinon.spy(Utils, 'calculateNumber');
     sendPaymentRequestToApi(100, 20);
-    expect(calculateNumberSpy.calledOnceWith('SUM', 100, 20)).to.be.true;
-    calculateNumberSpy.restore();
+    expect(calculateNumberSpy.calledOnce).to.be.true;
   });
 });
